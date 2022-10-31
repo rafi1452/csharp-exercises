@@ -14,7 +14,7 @@ public class Exercise10
 
     public void run()
     {
-        string[] lines = File.ReadAllLines(@"C:\Users\Admin\iris.csv");
+        string[] lines = File.ReadAllLines("../../../data/iris.csv");
 
         /* x is dictionary 
           {
