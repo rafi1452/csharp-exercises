@@ -1,19 +1,21 @@
 ﻿using System;
-using System.Linq;
-using System.Net.Http.Headers;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 
-namespace Exercises
+namespace DataConection
 {
-    class Program
+    class program
     {
-
-
-        static void Main(String[] args)
+        static void Main(string[] args)
         {
-            Exercise10 e1 = new Exercise10();
-            e1.run();
+            Exercise11 ex = new Exercise11();
+            ex.run();
         }
+
     }
-    
 }
