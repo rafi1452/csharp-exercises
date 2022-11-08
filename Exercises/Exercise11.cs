@@ -10,6 +10,7 @@ using Quartz.Util;
 using SixLabors.ImageSharp.Drawing;
 using static System.Formats.Asn1.AsnWriter;
 using System.Runtime.Intrinsics.Arm;
+using Exercises.Models;
 
 public class Exercise11
 {
@@ -115,6 +116,60 @@ public class Exercise11
                 Console.WriteLine();
             }
         }    
+    }
+    public void entityfw()
+    {
+        using (FlowersDbContext context = new FlowersDbContext())
+        {
+            var groupbyTable = from row in context.Irises
+                               group row by row.Species into grouping // only 3 times iteration
+                               select new
+                               {
+                                   Key = grouping.Key,
+                                   slMin = grouping.Min(item => item.SepalLength),
+                                   slMax = grouping.Max(item => item.SepalLength),
+                                   slAvg = grouping.Average(item => item.SepalLength),
+
+                                   swMin = grouping.Min(item => item.SepalWidth),
+                                   swMax = grouping.Max(item => item.SepalWidth),
+                                   swAvg = grouping.Average(item => item.SepalWidth),
+
+                                   plMin = grouping.Min(item => item.PetalLength),
+                                   plMax = grouping.Max(item => item.PetalLength),
+                                   plAvg = grouping.Average(item => item.PetalLength),
+
+                                   pwMin = grouping.Min(item => item.PetalWidth),
+                                   pwMax = grouping.Max(item => item.PetalWidth),
+                                   pwAvg = grouping.Average(item => item.PetalWidth),
+                               };
+            groupbyTable.AsQueryable();
+            foreach (var group in groupbyTable)
+            {
+                Console.WriteLine(group.Key);
+
+                Console.WriteLine("     min     max     avg");
+                Console.Write("sl   " + group.slMin.ToString("0.00"));
+                Console.Write("    " + group.slMax.ToString("0.00"));
+                Console.WriteLine("    " + group.slAvg.ToString("0.00"));
+
+                
+                Console.Write("sw   " + group.swMin.ToString("0.00"));
+                Console.Write("    " + group.swMax.ToString("0.00"));
+                Console.WriteLine("    " + group.swAvg.ToString("0.00"));
+
+                
+                Console.Write("pl   " + group.plMin.ToString("0.00"));
+                Console.Write("    " + group.plMax.ToString("0.00"));
+                Console.WriteLine("    " + group.plAvg.ToString("0.00"));
+
+                
+                Console.Write("pw   " + group.pwMin.ToString("0.00"));
+                Console.Write("    " + group.pwMax.ToString("0.00"));
+                Console.WriteLine("    " + group.pwAvg.ToString("0.00") + "\n");
+
+            }
+
+        }
     }
     
 }
