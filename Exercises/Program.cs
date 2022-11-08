@@ -13,9 +13,11 @@ namespace DataConection
     {
         static void Main(string[] args)
         {
-            Exercise11 ex = new Exercise11();
+            
+            Exercise11 ex= new Exercise11();
             ex.run();
+            ex.groupby();
+           
         }
-
     }
 }
