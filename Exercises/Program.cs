@@ -16,7 +16,7 @@ namespace DataConection
             
             Exercise11 ex= new Exercise11();
             ex.run();
-            ex.groupby();
+            //ex.groupby();
             ex.entityfw();          
         }
     }
