@@ -172,20 +172,10 @@ public class Exercise11
     }
 
     public double calc(string species, string prop, string type)
-    {
-        //var propMap = new Dictionary<string, string>
-        //{
-        //    { "sepal_length", "SepalLength" },
-        //    { "sepal_width", "SepalWidth" },
-        //    { "petal_length", "PetalLength" },
-        //    { "petal_width", "PetalWidth" }
-        //};
-        //prop = propMap[prop];
-
+    {       
         double calc = 0;
         using (FlowersDbContext context = new FlowersDbContext())
-        {
-            //calcquery = { Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable<double>}
+        {            
             IQueryable<double> calcquery ;
             if (prop == "sepal_length")
             {
