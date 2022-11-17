@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Exercise11SpecFlow": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
