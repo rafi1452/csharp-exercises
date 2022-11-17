@@ -14,6 +14,8 @@ using Exercises.Models;
 using System.Reflection.Metadata.Ecma335;
 using SixLabors.ImageSharp;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Query.Internal;
+
 public class Exercise11
 {
     public Exercise11()
@@ -183,9 +185,8 @@ public class Exercise11
         double calc = 0;
         using (FlowersDbContext context = new FlowersDbContext())
         {
-            var calcquery = from row in context.Irises
-                           where row.Species == species
-                           select row.PetalWidth;
+            //calcquery = { Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable<double>}
+            IQueryable<double> calcquery ;
             if (prop == "sepal_length")
             {
                 calcquery = from row in context.Irises
@@ -203,6 +204,12 @@ public class Exercise11
                 calcquery = from row in context.Irises
                            where row.Species == species
                            select row.PetalLength;
+            }
+            else
+            {
+                calcquery = from row in context.Irises
+                            where row.Species == species
+                            select row.PetalWidth;
             }
 
             if (type == "min")
