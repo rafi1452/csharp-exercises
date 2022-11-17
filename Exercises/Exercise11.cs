@@ -11,7 +11,9 @@ using SixLabors.ImageSharp.Drawing;
 using static System.Formats.Asn1.AsnWriter;
 using System.Runtime.Intrinsics.Arm;
 using Exercises.Models;
-
+using System.Reflection.Metadata.Ecma335;
+using SixLabors.ImageSharp;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 public class Exercise11
 {
     public Exercise11()
@@ -63,7 +65,7 @@ public class Exercise11
 
 
     //using single line sql query
-    
+
     public void groupby()
     {
         using (SqlConnection conn = new SqlConnection(@"Data Source=.\sqlexpress;Initial Catalog=species;Integrated Security=True"))
@@ -115,7 +117,7 @@ public class Exercise11
                 Console.WriteLine(rdr.GetDouble(12).ToString("0.00"));
                 Console.WriteLine();
             }
-        }    
+        }
     }
     public void entityfw()
     {
@@ -150,11 +152,11 @@ public class Exercise11
                 Console.Write("sl   " + group.slMin.ToString("0.00"));
                 Console.Write("    " + group.slMax.ToString("0.00"));
                 Console.WriteLine("    " + group.slAvg.ToString("0.00"));
-     
+
                 Console.Write("sw   " + group.swMin.ToString("0.00"));
                 Console.Write("    " + group.swMax.ToString("0.00"));
                 Console.WriteLine("    " + group.swAvg.ToString("0.00"));
-        
+
                 Console.Write("pl   " + group.plMin.ToString("0.00"));
                 Console.Write("    " + group.plMax.ToString("0.00"));
                 Console.WriteLine("    " + group.plAvg.ToString("0.00"));
@@ -164,10 +166,62 @@ public class Exercise11
                 Console.WriteLine("    " + group.pwAvg.ToString("0.00") + "\n");
 
             }
-
         }
     }
-    
+
+    public double calc(string species, string prop, string type)
+    {
+        //var propMap = new Dictionary<string, string>
+        //{
+        //    { "sepal_length", "SepalLength" },
+        //    { "sepal_width", "SepalWidth" },
+        //    { "petal_length", "PetalLength" },
+        //    { "petal_width", "PetalWidth" }
+        //};
+        //prop = propMap[prop];
+
+        double calc = 0;
+        using (FlowersDbContext context = new FlowersDbContext())
+        {
+            var calcquery = from row in context.Irises
+                           where row.Species == species
+                           select row.PetalWidth;
+            if (prop == "sepal_length")
+            {
+                calcquery = from row in context.Irises
+                           where row.Species == species
+                           select row.SepalLength;
+            }
+            else if (prop == "sepal_width")
+            {
+                calcquery = from row in context.Irises
+                           where row.Species == species
+                           select row.SepalWidth;
+            }
+            else if (prop == "petal_length")
+            {
+                calcquery = from row in context.Irises
+                           where row.Species == species
+                           select row.PetalLength;
+            }
+
+            if (type == "min")
+            {
+                calc = calcquery.Min();
+            }
+            else if (type == "max")
+            {
+                calc = calcquery.Max();
+            }
+            else if (type == "avg")
+            {
+                calc = calcquery.Average();
+            }           
+        }
+        calc = Math.Round(calc, 2);
+        Console.WriteLine(calc);
+        return calc;
+    }
 }
 
 
