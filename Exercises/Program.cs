@@ -19,7 +19,8 @@ namespace DataConection
             //ex.run();
             //ex.groupby();
             //ex.entityfw();
-            ex.calc("setosa", "sepal_length", "min");            
+            //ex.calc("setosa", "sepal_length", "min");
+            ex.EFmysql();
         }
     }
 }

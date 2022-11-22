@@ -15,6 +15,11 @@ using System.Reflection.Metadata.Ecma335;
 using SixLabors.ImageSharp;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Query.Internal;
+using SpecFlow.Internal.Json;
+using System.Text.Json;
+using Microsoft.VisualBasic;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using Exercises.DataObjects;
 
 public class Exercise11
 {
@@ -219,7 +224,58 @@ public class Exercise11
         Console.WriteLine(calc);
         return calc;
     }
+
+
+    public void EFmysql()
+    {
+        using (flowers_dbContext context = new flowers_dbContext())
+        {
+            var groupbyTable = from row in context.Irises
+                               group row by row.Species into grouping
+                               select new
+                               {
+                                   Key = grouping.Key,
+                                   slMin = grouping.Min(item => item.SepalLength),
+                                   slMax = grouping.Max(item => item.SepalLength),
+                                   slAvg = grouping.Average(item => item.SepalLength),
+
+                                   swMin = grouping.Min(item => item.SepalWidth),
+                                   swMax = grouping.Max(item => item.SepalWidth),
+                                   swAvg = grouping.Average(item => item.SepalWidth),
+
+                                   plMin = grouping.Min(item => item.PetalLength),
+                                   plMax = grouping.Max(item => item.PetalLength),
+                                   plAvg = grouping.Average(item => item.PetalLength),
+
+                                   pwMin = grouping.Min(item => item.PetalWidth),
+                                   pwMax = grouping.Max(item => item.PetalWidth),
+                                   pwAvg = grouping.Average(item => item.PetalWidth),
+                               };
+            groupbyTable.AsQueryable();
+            foreach (var group in groupbyTable)
+            {
+                Console.WriteLine(group.Key);
+                Console.WriteLine("     min     max     avg");
+                Console.Write("sl   " + ((double)group.slMin).ToString("0.00"));
+                Console.Write("    " + ((double)group.slMax).ToString("0.00"));
+                Console.WriteLine("    " + ((double)group.slAvg).ToString("0.00"));
+
+                Console.Write("sw   " + ((double)group.swMin).ToString("0.00"));
+                Console.Write("    " + ((double)group.swMax).ToString("0.00"));
+                Console.WriteLine("    " + ((double)group.swAvg).ToString("0.00"));
+
+                Console.Write("pl   " + ((double)group.plMin).ToString("0.00"));
+                Console.Write("    " + ((double)group.plMax).ToString("0.00"));
+                Console.WriteLine("    " + ((double)group.plAvg).ToString("0.00"));
+
+                Console.Write("pw   " + ((double)group.pwMin).ToString("0.00"));
+                Console.Write("    " + ((double)group.pwMin).ToString("0.00"));
+                Console.WriteLine("    " + ((double)group.pwAvg).ToString("0.##") + "\n");
+            }
+        }
+    }
 }
+
 
 
 
