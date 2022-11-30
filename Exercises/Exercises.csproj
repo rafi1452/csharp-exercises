@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="IronXL.Excel" Version="2022.9.9454" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,7 +23,9 @@
     <PackageReference Include="SpecFlow.ExternalData" Version="3.9.40" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.116" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="TimeZoneConverter" Version="6.0.1" />
+    <PackageReference Include="Uno.UI.Runtime.WebAssembly" Version="4.6.19" />
   </ItemGroup>
 
   <ItemGroup>
