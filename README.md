@@ -1,7 +1,5 @@
 # csharp-exercises
 
-Now that you know the basics of C#, try to write programs to solve the following:
-
 1. Find the sum of this convergent series by considering the first 10 terms: 1 + 2/7 + 3/72 + 4/73 + ...
 
 2. What's the difference between int and Int32? What would happen if you assign an int value to an Int16 data type? Write a program to show these differences.
