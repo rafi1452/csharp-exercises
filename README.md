@@ -1,6 +1,6 @@
 # csharp-exercises
 
-1. Find the sum of this convergent series by considering the first 10 terms: 1 + 2/7 + 3/72 + 4/73 + ...
+1. Find the sum of this convergent series by considering the first 10 terms: 1 + $\frac{2}{7}$ + $\frac{3}{7^2}$ + $\frac{4}{7^3}$ + ...
 
 2. What's the difference between int and Int32? What would happen if you assign an int value to an Int16 data type? Write a program to show these differences.
 
