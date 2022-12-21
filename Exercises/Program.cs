@@ -12,12 +12,13 @@ namespace DataConection
 {
     class program
     {
-        static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
 
-            Exercise13 ex = new Exercise13();
+            Exercise14 ex = new Exercise14();
+            ex.run();
             //await ex.run();
-            await ex.GetUrlContentLengthAsync();
+            //await ex.GetUrlContentLengthAsync();
             //await ex.GetDotNetCount();
             //ex.groupby();
             //ex.entityfw();
